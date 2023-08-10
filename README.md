@@ -20,8 +20,10 @@ The ProgressCircle script is the base circular shape that is used in most of the
 
 ### Gym Capacity Dials
 ![IMG_7921](https://github.com/reardon-co/marino-traffic-counter/assets/61595397/b931aee4-1d7d-4d3a-a47d-cc482a995c49)
+
 This widget tracks gym traffic in different areas in a compact way, as it can fit in a small widget. Each dial represents a different area of the gym. Top-left is Squashbusters traffic, top-right is Marino 3rd floor traffic, bottom-left is Marino treadmill traffic, and bottom-right is 2nd floor weight traffic. The amount of the dial filled in white represents the percentage of in-use machines in that area. 
 
 ### Gym Traffic Bars
 ![IMG_7922](https://github.com/reardon-co/marino-traffic-counter/assets/61595397/cb9a8b4e-a8e0-4bd0-ba0b-1520f683b766)
+
 This widget shows more detailed information than Gym Capacity Dials, but also requires a large widget. The widget shows a percentage which represents the amount of in-use machines in that area. At the bottom of the widget, it also shows the date and time that the traffic data was fetched.
