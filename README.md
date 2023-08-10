@@ -16,7 +16,7 @@ There are two types of scripts included: dependencies and widgets. For every wid
 The GymAvail script scrapes the Northeastern gym webpage for data on traffic. It then converts this data into an easy-to-read JSON format. This is used in conjunction with the widget scripts to populate real-time data.
 
 ### ProgressCircle
-The ProgressCircle script is the base circular shape that is used in most of the widgets I created.
+The ProgressCircle script is the base circular shape that is used in the circular widget I made.
 
 ### Gym Capacity Dials
 ![IMG_7921](https://github.com/reardon-co/marino-traffic-counter/assets/61595397/b931aee4-1d7d-4d3a-a47d-cc482a995c49)
