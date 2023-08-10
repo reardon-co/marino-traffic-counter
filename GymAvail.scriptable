@@ -1,0 +1,12 @@
+{
+  "always_run_in_app" : false,
+  "icon" : {
+    "color" : "deep-brown",
+    "glyph" : "wrench"
+  },
+  "name" : "GymAvail",
+  "script" : "async function fetchApi() {\n  const req = new Request('https:\/\/connect2concepts.com\/connect2\/?type=circle&key=2A2BE0D8-DF10-4A48-BEDD-B3BC0CD628E7')\n  return req.loadString()\n}\n\nasync function getGymLevels() {\n  const htmlFromAPI = await fetchApi()\n  const splitString = htmlFromAPI.split('\\n').slice(11)\n  const trimmedArr = splitString.map(el => el.trim())\n  const arrNoEmpty = trimmedArr.filter(el => el !== \"\")\n  const centerDivs = trimmedArr.filter(el => el.includes(\"data-percent\") || el.includes(\"text-align:center\"))\n  centerDivs.unshift('<div>')\n  centerDivs.push('<\/div>')\n  const body = centerDivs.join('').split('<br\/>').join(' ').split(\"&\").join('')\n  const parser = new XMLParser(body)\n  const gymLevels = {}\n  let name = ''\n  let percent = 0\n  let lastCount = 0\n  let lastUpdate = ''\n  parser.didStartElement = (el, attrs) => {\n    if ('data-percent' in attrs) {\n      percent = parseFloat(attrs['data-percent'])\n    }\n\t}\n  parser.foundCharacters = (string) => {\n    if (string.includes('Marino') || string.includes('SquashBusters')) {\n      name = string\n    }\n    if (string.includes('Last Count')) {\n      const splitStrings = string.split(' ')\n      lastCount = parseInt(splitStrings[3])\n      lastUpdate = splitStrings[5] + ' ' + splitStrings[6] + ' ' + splitStrings[7]\n      gymLevels[name.trim()] = {\n        percent,\n        lastCount,\n        lastUpdate\n      }\n    }\n\t}\n  parser.parseErrorOccurred = () => {\n  console.log(\"error\")\n\t}\n  parser.parse()\n  return gymLevels\n}\n\n\/\/ Script Starts Here\nmodule.exports.gymLevels = getGymLevels()\nScript.complete()",
+  "share_sheet_inputs" : [
+
+  ]
+}

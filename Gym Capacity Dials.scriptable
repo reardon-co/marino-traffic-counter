@@ -1,0 +1,12 @@
+{
+  "always_run_in_app" : false,
+  "icon" : {
+    "color" : "gray",
+    "glyph" : "magic"
+  },
+  "name" : "Gym Capacity Dials",
+  "script" : "const gymModule = importModule('GymAvail.js')\nconst progressCircleModule = importModule('ProgressCircle.js')\nconst gymLevels = await gymModule.gymLevels\nconsole.log(gymLevels)\n\nconst widget = new ListWidget()\nwidget.backgroundColor = Color.black()\n\nconst hStack1 = widget.addStack()\nhStack1.layoutHorizontally()\n\nlet squashProgressStack = await progressCircleModule.progressCircle(hStack1, gymLevels['SquashBusters - 4th Floor'].percent)\naddSymbol(\"figure.squash\", squashProgressStack)\nhStack1.addSpacer()\nlet marinoWeightProgressStack = await progressCircleModule.progressCircle(hStack1, gymLevels[\"Marino Center - 3rd Floor Weight Room\"].percent)\naddSymbol(\"figure.strengthtraining.traditional\", marinoWeightProgressStack)\n\nwidget.addSpacer()\nconst hStack2 = widget.addStack()\nhStack2.layoutHorizontally()\n\nlet marinoTreadmillProgressStack = await progressCircleModule.progressCircle(hStack2, gymLevels[\"Marino Center - 2nd Floor\"].percent)\naddSymbol(\"figure.run\", marinoTreadmillProgressStack)\nhStack2.addSpacer()\nlet marinoMachineProgressStack = await progressCircleModule.progressCircle(hStack2, gymLevels[\"Marino Center - 3rd Floor Select  Cardio\"].percent)\naddSymbol(\"dumbbell.fill\", marinoMachineProgressStack)\n\nfunction addSymbol(name, progressStack) {\n  let sf = SFSymbol.named(name)\n\tsf.applyFont(Font.regularSystemFont(26))\n\tsf = progressStack.addImage(sf.image)\n\tsf.imageSize = new Size(26,26)\n\tsf.tintColor = new Color(\"#fafafa\")\n}\n\n\n\nwidget.presentSmall() \/\/ Does not present correctly\nScript.setWidget(widget)\nScript.complete()",
+  "share_sheet_inputs" : [
+
+  ]
+}
